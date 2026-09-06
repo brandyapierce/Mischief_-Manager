@@ -240,14 +240,20 @@ node scripts/ingest-and-update.js
 
 ### Anthropic API Call
 
-The pipeline sends raw content + prompt to Claude:
+The pipeline sends raw content + prompt to Claude Haiku (cost-optimized):
 
 ```javascript
-const ANTHROPIC_PROMPT = `
-Convert the following raw source into a concise, well-structured markdown wiki page...
-[Full prompt in scripts/ingest-and-update.js]
-`;
+model: 'claude-3-5-haiku-20241022'  // 5x cheaper than Sonnet, ideal for high-volume ingestion
 ```
+
+**Cost Comparison (approximate):**
+- Haiku: $0.80 per 1M input tokens, $4 per 1M output tokens
+- Sonnet: $3 per 1M input tokens, $15 per 1M output tokens
+
+To upgrade to Sonnet or Opus for higher quality:
+1. Edit `scripts/ingest-and-update.js` line with `model:` field
+2. Change to `'claude-3-5-sonnet-20241022'` or `'claude-opus-4-1-20250805'`
+3. Test with a single file first: `npm run dry-run` then `npm start`
 
 Response is processed and stored in wiki pages.
 

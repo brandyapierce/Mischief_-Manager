@@ -182,6 +182,9 @@ ${rawContent}
 /**
  * Call Anthropic Claude API
  * Requires ANTHROPIC_API_KEY environment variable
+ * 
+ * Uses Claude Haiku by default (cost-optimized, ~5x cheaper than Sonnet)
+ * To upgrade: change model string to 'claude-3-5-sonnet-20241022' or 'claude-opus-4-1-20250805'
  */
 async function callAnthropicAPI(prompt) {
   // Dynamic import for node-fetch or similar
@@ -190,7 +193,7 @@ async function callAnthropicAPI(prompt) {
   const apiUrl = 'https://api.anthropic.com/v1/messages';
 
   const requestBody = {
-    model: 'claude-3-5-sonnet-20241022', // Use latest available model
+    model: 'claude-3-5-haiku-20241022', // Use Haiku for cost efficiency (5x cheaper than Sonnet)
     max_tokens: 2048,
     messages: [
       {
