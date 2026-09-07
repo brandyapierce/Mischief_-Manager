@@ -403,8 +403,10 @@ input {
   color: white;
   min-height: 80px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
@@ -412,6 +414,17 @@ input {
 .map-zone.selected {
   border-color: #0f172a;
   transform: translateY(-1px);
+}
+
+.map-zone-label,
+.map-zone-status-pair {
+  display: block;
+  text-align: center;
+}
+
+.map-zone-status-pair {
+  font-size: 0.7rem;
+  opacity: 0.96;
 }
 
 .map-zone.green {
@@ -464,6 +477,10 @@ input {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0.75rem 0;
+}
+
+.pair-summary {
+  margin-bottom: 0.5rem;
 }
 
 .mini-status {

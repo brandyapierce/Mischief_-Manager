@@ -11,10 +11,10 @@ export function DashboardCard({ zone, isSelected, onSelect }) {
     >
       <div className="dashboard-card-header">
         <h3>{zone.name}</h3>
-        <span className={`status-pill status-${status.zoneColor}`}>{status.zoneColor}</span>
+        <span className={`status-pill status-${status.zoneColor}`}>{status.cleaningStatus === 'complete' ? 'Clean' : 'Open'}</span>
       </div>
 
-      <div className="status-summary">
+      <div className="status-summary pair-summary">
         <span className={`mini-status ${status.cleaningStatus === 'complete' ? 'success' : 'warning'}`}>
           Cleaning: {status.cleaningStatus}
         </span>

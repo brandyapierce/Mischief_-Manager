@@ -17,7 +17,10 @@ export function ZoneMapView({ zones, selectedZoneId, onSelectZone }) {
               onClick={() => onSelectZone?.(zone.id)}
               title={`${zone.name}: cleaning ${status.cleaningStatus}, bowl drop ${status.bowlDropStatus}`}
             >
-              <span>{zone.name}</span>
+              <span className="map-zone-label">{zone.name}</span>
+              <span className="map-zone-status-pair">
+                {status.cleaningStatus} / {status.bowlDropStatus}
+              </span>
             </button>
           );
         })}
