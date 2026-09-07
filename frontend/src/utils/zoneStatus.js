@@ -18,7 +18,10 @@ export function deriveZoneStatus(zone) {
     (task) => task.state === 'complete'
   ).length;
 
+  const lifecycleStatus = zone.status === 'closed' ? 'closed' : cleaningComplete ? 'ready' : 'open';
+
   const zoneColor = (() => {
+    if (zone.status === 'closed') return 'green';
     if (cleaningComplete && bowlDropComplete) return 'green';
     if (cleaningComplete && !bowlDropComplete) return 'green';
     if (!cleaningComplete && bowlDropComplete) return 'yellow';
@@ -28,6 +31,7 @@ export function deriveZoneStatus(zone) {
   return {
     cleaningStatus: cleaningComplete ? 'complete' : 'needs_attention',
     bowlDropStatus: bowlDropComplete ? 'complete' : 'pending',
+    zoneStatus: lifecycleStatus,
     zoneColor,
     needsAttention: !cleaningComplete || !bowlDropComplete,
     cleaningProgress: `${cleaningDoneCount}/${cleaningTasks.length || 0}`,

@@ -15,9 +15,13 @@ This is the central repository for sanctuary operations documentation, zone mana
 - **[Safety](#safety)** - Critical safety information
 - **[Resources](#resources)** - Links and references
 
+## Requirements
+
+- [PoC Vision Questions and Answers](vision-questions-and-answers.md) - Working requirements and decisions from PoC planning
+
 ## Zones
 
-The sanctuary is organized into 16 zones, each with its own monitoring schedule and care requirements:
+The sanctuary is organized into 19 zones, each with its own monitoring schedule and care requirements:
 
 1. [Bird Building](wiki/Bird-Building.md)
 2. [Nocturnal Building](wiki/Nocturnal-Building.md)
@@ -31,10 +35,13 @@ The sanctuary is organized into 16 zones, each with its own monitoring schedule 
 10. [Front Yard](wiki/Front-Yard.md)
 11. [Middle Area (Porcupines, Pigs)](wiki/Middle-Area.md)
 12. [House Animals](wiki/House-Animals.md)
-13. [Foxes/Raccoons/Koy/Coati/Owls](wiki/Predators-Wildlife.md)
+13. [Foxes/Raccoons/Koi/Coati/Owls](wiki/Predators-Wildlife.md)
 14. [Vultures](wiki/Vultures.md)
-15. [Ant Eater](wiki/Ant-Eater.md)
+15. [Anteater](wiki/Anteater.md)
 16. [Ostriches](wiki/Ostriches.md)
+17. [Barn Cats](wiki/Barn-Cats.md)
+18. [Commissary](wiki/Commissary.md)
+19. [Binturong/Lemur Barn](wiki/Binturong-Lemur-Barn.md)
 
 ## Procedures
 
