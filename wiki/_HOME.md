@@ -19,6 +19,8 @@ This is the central repository for sanctuary operations documentation, zone mana
 
 - [PoC Vision Questions and Answers](vision-questions-and-answers.md) - Working requirements and decisions from PoC planning
 - [Current Product Status](current-product-status.md) - Handoff summary and exact current state for continuing development
+- [Deployment Runbook](deployment-runbook.md) - Vercel settings, redeploy steps, and troubleshooting
+- The frontend is deployed on Vercel for a shareable management demonstration; see [Current Product Status](current-product-status.md) for deployment settings and remaining production gaps.
 
 ## Zones
 

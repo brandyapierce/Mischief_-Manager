@@ -39,6 +39,8 @@ The frontend prototype is a React + Vite application that models the sanctuary o
 - The app now derives a sanctuary workday at 7:00 AM, attributes overnight activity to the prior workday, and displays public-hours status for Wednesday through Sunday, 11:00 AM to 4:00 PM.
 - Settings includes a local demo reset so phone testing can restart the sample workflow without manually clearing browser storage.
 - Preview configuration binds Vite to all interfaces and includes a Vercel SPA rewrite for direct route access.
+- The frontend has been successfully deployed to Vercel for a permanent phone-accessible management demo. Vercel should use `frontend` as the Root Directory, `npm run build` as the Build Command, `dist` as the Output Directory, and the default install command.
+- Deployment troubleshooting is documented in [Deployment Runbook](deployment-runbook.md), including the alternate repository-root configuration and the `cd frontend` install-command failure.
 - Garage now has individually checkable tasks for Enclosures A and B, Betsy, the Betongs, sloths, fish tank, Abby, parrot, monkeys, small birds, sweeping, and water-jug refills.
 - Garage cleaning tasks are grouped visually by enclosure, animal, and whole-garage work; ordinary cleaning tasks can be checked as a draft and saved once with required checklist initials.
 - Back Porch now has separate Chinchilla, Sugar Glider, Isolation, Back Deck Owl, and general porch cleaning sections, plus separate feeding-drop signoffs for Chinchilla bowls, Owl mice, and Isolation bowl.
@@ -102,18 +104,18 @@ The prototype is not a full backend-integrated production app yet. The remaining
 1. Real persistent database/API layer and cross-device synchronization; current state is localStorage/demo state.
 2. Production authentication and server-enforced role-based access control; current sign-in is a demo selector.
 3. QR codes should eventually encode a secure sign-in session or location identifier rather than only opening `/signin`.
-4. Permanent hosted deployment; temporary Vercel deployments expire unless claimed or deployed to an account.
+4. The current Vercel deployment is a hosted frontend demo; it still needs production authentication, backend data, and cross-device synchronization.
 5. Final production polish, accessibility improvements, automated tests, and audit history.
 
 ## Recommended next work order
 
 If the team resumes from this point, the best next steps are:
 
-1. Deploy the frontend to a permanent Vercel project for management demonstrations.
-2. Replace localStorage with a real API/database and synchronize staff devices.
-3. Replace demo sign-in and QR routing with real authentication and secure role enforcement.
-4. Add audit history for staff edits, task corrections, approvals, assignments, and zone signoffs.
-5. Add automated workflow tests and finish mobile/accessibility polish.
+1. Replace localStorage with a real API/database and synchronize staff devices.
+2. Replace demo sign-in and QR routing with real authentication and secure role enforcement.
+3. Add audit history for staff edits, task corrections, approvals, assignments, and zone signoffs.
+4. Add automated workflow tests and finish mobile/accessibility polish.
+5. Expand the hosted demo to a permanent production-ready environment after the backend is validated.
 
 ## Summary for the next session
 
