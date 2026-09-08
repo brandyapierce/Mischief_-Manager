@@ -1,7 +1,7 @@
 ---
 title: "Mischief Manager - Wiki Home"
-generated_at: ""
-last_updated: ""
+generated_at: "2026-09-08"
+last_updated: "2026-09-08"
 ---
 
 # Welcome to Mischief Manager Wiki
@@ -18,6 +18,7 @@ This is the central repository for sanctuary operations documentation, zone mana
 ## Requirements
 
 - [PoC Vision Questions and Answers](vision-questions-and-answers.md) - Working requirements and decisions from PoC planning
+- [Current Product Status](current-product-status.md) - Handoff summary and exact current state for continuing development
 
 ## Zones
 
@@ -72,7 +73,7 @@ Standard procedures for daily operations:
 
 ---
 
-**Last Generated:** [Timestamp]  
-**Version:** 1.0  
+**Last Generated:** 2026-09-08
+**Version:** 1.2
 
 *This wiki is maintained by an automated ingestion pipeline. For more information, see the project README.*

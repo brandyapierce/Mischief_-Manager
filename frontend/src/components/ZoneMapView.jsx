@@ -15,7 +15,7 @@ export function ZoneMapView({ zones, selectedZoneId, onSelectZone }) {
               type="button"
               className={`map-zone ${status.zoneColor} ${isSelected ? 'selected' : ''}`}
               onClick={() => onSelectZone?.(zone.id)}
-              title={`${zone.name}: cleaning ${status.cleaningStatus}, bowl drop ${status.bowlDropStatus}`}
+              title={`${zone.name}: ${status.statusLabel}; cleaning ${status.cleaningStatus}, bowl drop ${status.bowlDropStatus}`}
             >
               <span className="map-zone-label">{zone.name}</span>
               <span className="map-zone-status-pair">

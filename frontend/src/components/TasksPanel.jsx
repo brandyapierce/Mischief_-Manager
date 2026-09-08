@@ -15,8 +15,15 @@ export function TasksPanel({ tasks, selectedZoneName, onOpenTaskModal }) {
           <div>
             <span>{task.title}</span>
             {task.notes && <small>{task.notes}</small>}
+            {task.completedByName && (
+              <small>
+                Completed by {task.completedByName}
+                {task.completedAt ? ` · ${new Date(task.completedAt).toLocaleString()}` : ''}
+              </small>
+            )}
+            {task.workdayDate && <small>Workday: {task.workdayDate}</small>}
           </div>
-          <strong>{task.priority}</strong>
+          <strong>{task.approvalStatus === 'pending' ? 'Awaiting approval' : task.priority}</strong>
         </div>
       ))}
     </div>

@@ -1,4 +1,4 @@
-export function TaskRow({ task, workflow, requiresInitials = false, onToggle, onInitialsChange }) {
+export function TaskRow({ task, workflow, requiresInitials = false, disabled = false, onToggle, onComplete, onMarkNA, onInitialsChange }) {
   const isDone = task.state === 'complete';
 
   return (
@@ -7,10 +7,34 @@ export function TaskRow({ task, workflow, requiresInitials = false, onToggle, on
         <input
           type="checkbox"
           checked={isDone}
-          onChange={() => onToggle?.(task.id, workflow)}
+          disabled={disabled}
+          onChange={() => {
+            if (isDone) {
+              onToggle?.(task.id, workflow);
+            } else {
+              onComplete?.(task.id, workflow);
+            }
+          }}
         />
-        <span>{task.title}</span>
+        <span>{task.title}{task.state === 'na' && <small className="task-exception">N/A: {task.naReason}</small>}</span>
       </div>
+
+      {!isDone && task.state !== 'na' && (
+        <button type="button" className="mini-button" disabled={disabled} onClick={() => onMarkNA?.(task.id, workflow)}>
+          N/A
+        </button>
+      )}
+
+      {task.taskType === 'bird_seed_level' && (
+        <button
+          type="button"
+          className="secondary-button"
+          disabled={disabled}
+          onClick={() => onComplete?.(task.id, workflow)}
+        >
+          Update level
+        </button>
+      )}
 
       {requiresInitials && (
         <div className="initials-input">
@@ -19,6 +43,7 @@ export function TaskRow({ task, workflow, requiresInitials = false, onToggle, on
             value={task.initials || ''}
             maxLength={3}
             placeholder="Init"
+            disabled={disabled}
             onChange={(event) => onInitialsChange?.(task.id, event.target.value.toUpperCase())}
           />
         </div>

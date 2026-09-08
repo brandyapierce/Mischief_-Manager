@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export function ApprovalReviewPanel({ task, onApprove, onReject }) {
+  const [reviewNotes, setReviewNotes] = useState('');
+
   if (!task) {
     return (
       <div className="approval-review-panel">
@@ -7,6 +11,11 @@ export function ApprovalReviewPanel({ task, onApprove, onReject }) {
       </div>
     );
   }
+
+  if (task.status !== 'pending') {
+    return null;
+  }
+
 
   return (
     <div className="approval-review-panel">
@@ -20,7 +29,14 @@ export function ApprovalReviewPanel({ task, onApprove, onReject }) {
           <button className="approve-button" onClick={() => onApprove?.()}>
             Approve
           </button>
-          <button className="reject-button" onClick={() => onReject?.()}>
+          <textarea
+            className="approval-note-input"
+            value={reviewNotes}
+            onChange={(event) => setReviewNotes(event.target.value)}
+            placeholder="Review note (required to reject)"
+            rows="2"
+          />
+          <button className="reject-button" disabled={!reviewNotes.trim()} onClick={() => onReject?.(reviewNotes)}>
             Reject
           </button>
         </div>

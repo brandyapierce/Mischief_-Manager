@@ -17,7 +17,7 @@ export function ZoneDirectoryScreen({ zones, selectedZoneId, onSelectZone }) {
               <div className="dashboard-card-header">
                 <h3>{zone.name}</h3>
                 <span className={`status-pill status-${status.zoneColor}`}>
-                  {status.zoneColor === 'green' ? 'Ready' : 'Open'}
+                  {status.statusLabel}
                 </span>
               </div>
 
@@ -41,7 +41,7 @@ export function ZoneDirectoryScreen({ zones, selectedZoneId, onSelectZone }) {
                 </div>
                 <div>
                   <label>People</label>
-                  <strong>{zone.signedInUsers.length}</strong>
+                  <strong>{status.signedInCount}</strong>
                 </div>
               </div>
 
