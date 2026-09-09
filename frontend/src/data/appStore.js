@@ -60,7 +60,12 @@ export function loadAppState() {
     }
 
     const zones = parsed.zones.map((zone) => {
-      let migratedZone = zone;
+      let migratedZone = {
+        ...zone,
+        cleaning: Array.isArray(zone.cleaning) ? zone.cleaning : [],
+        feedingDrop: Array.isArray(zone.feedingDrop) ? zone.feedingDrop : [],
+        signedInUsers: Array.isArray(zone.signedInUsers) ? zone.signedInUsers : [],
+      };
 
       if (zone.name === 'Bird Building') {
         const existingTasks = Array.isArray(zone.cleaning) ? zone.cleaning : [];
@@ -126,6 +131,9 @@ export function loadAppState() {
     return {
       ...defaultAppState,
       ...parsed,
+      activeUser: parsed.activeUser && typeof parsed.activeUser === 'object'
+        ? { ...defaultAppState.activeUser, ...parsed.activeUser }
+        : defaultAppState.activeUser,
       zones,
       approvals: Array.isArray(parsed.approvals) ? parsed.approvals : defaultAppState.approvals,
       tasks: Array.isArray(parsed.tasks) ? parsed.tasks : defaultAppState.tasks,
