@@ -1,41 +1,27 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 
-const roleNames = {
-  employee: 'Alex Rivera',
-  volunteer: 'Jamie Cole',
-  trainee: 'Taylor Brooks',
-  manager: 'Morgan Tate',
-  director: 'Riley Morgan',
-};
-
-const roleIds = {
-  employee: 'u1',
-  volunteer: 'u2',
-  trainee: 'demo-trainee',
-  manager: 'u3',
-  director: 'demo-director',
-};
+const demoOnlyUsers = [
+  { id: 'demo-director', name: 'Riley Morgan', role: 'Director' },
+  { id: 'demo-trainee', name: 'Taylor Brooks', role: 'Trainee' },
+];
 
 export function SignInScreen({ user, users = [], onSignIn, showQr = true }) {
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || '');
-  const [role, setRole] = useState(user.role.toLowerCase());
   const [selectedUserId, setSelectedUserId] = useState(user.id);
+  const selectableUsers = useMemo(
+    () => [...users.filter((item) => item.status !== 'inactive'), ...demoOnlyUsers],
+    [users]
+  );
+  const selectedUser = selectableUsers.find((item) => item.id === selectedUserId) ?? selectableUsers[0];
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const selectedUser = users.find((item) => item.id === selectedUserId);
-    if (selectedUser) {
-      onSignIn?.({ ...selectedUser, phoneNumber });
+    if (!selectedUser) {
       return;
     }
 
-    onSignIn?.({
-      id: roleIds[role],
-      name: roleNames[role],
-      role: role.charAt(0).toUpperCase() + role.slice(1),
-      phoneNumber,
-    });
+    onSignIn?.({ ...selectedUser, phoneNumber });
   };
 
   return (
@@ -46,11 +32,9 @@ export function SignInScreen({ user, users = [], onSignIn, showQr = true }) {
         <label>
           Staff member
           <select value={selectedUserId} onChange={(event) => setSelectedUserId(event.target.value)}>
-            {users.filter((item) => item.status !== 'inactive').map((item) => (
+            {selectableUsers.map((item) => (
               <option key={item.id} value={item.id}>{item.name} · {item.role}</option>
             ))}
-            <option value="demo-director">Riley Morgan · Director</option>
-            <option value="demo-trainee">Taylor Brooks · Trainee</option>
           </select>
         </label>
 
@@ -64,18 +48,7 @@ export function SignInScreen({ user, users = [], onSignIn, showQr = true }) {
           />
         </label>
 
-        <label>
-          Role
-          <select value={role} onChange={(event) => setRole(event.target.value)}>
-            <option value="employee">Employee</option>
-            <option value="volunteer">Volunteer</option>
-            <option value="trainee">Trainee</option>
-            <option value="manager">Manager</option>
-            <option value="director">Director</option>
-          </select>
-        </label>
-
-        <button type="submit" className="primary-button">Continue as {roleNames[role]}</button>
+        <button type="submit" className="primary-button">Continue as {selectedUser?.name}</button>
 
         {showQr && (
           <div className="staff-qr-panel">
