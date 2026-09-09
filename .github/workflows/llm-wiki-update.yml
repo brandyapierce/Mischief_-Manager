@@ -1,0 +1,54 @@
+name: LLM Wiki Auto-Update
+
+on:
+  push:
+    paths:
+      - 'raw/**'
+    branches:
+      - karpathy-llm-wiki-setup
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'  # Daily at 03:00 UTC
+
+jobs:
+  llm-wiki-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: karpathy-llm-wiki-setup
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ingestion pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/ingest-and-update.js
+
+      - name: Validate run log
+        run: npm run validate -- --latest || echo "Validation failed but continuing..."
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add wiki/ log/
+          git commit -m "chore: llm-wiki auto-update [skip ci]" || echo "No changes to commit"
+          git push origin karpathy-llm-wiki-setup
+        continue-on-error: true
+
+      - name: Report
+        run: |
+          echo "✓ Workflow completed"
+          echo "Checking for latest log entry..."
+          ls -lh log/run-*.json | tail -1 || echo "No logs found"

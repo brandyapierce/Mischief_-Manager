@@ -1,0 +1,29 @@
+{
+  "name": "mischief-manager-llm-wiki",
+  "version": "0.1.0",
+  "description": "Karpathy LLM Wiki structure for Mischief Manager sanctuary operations",
+  "main": "scripts/ingest-and-update.js",
+  "scripts": {
+    "start": "node scripts/ingest-and-update.js",
+    "dry-run": "node scripts/ingest-and-update.js --dry-run",
+    "validate": "node scripts/validate-run-log.js",
+    "validate-latest": "node scripts/validate-run-log.js --latest"
+  },
+  "keywords": [
+    "sanctuary",
+    "wiki",
+    "llm",
+    "karpathy",
+    "ingestion",
+    "automation"
+  ],
+  "author": "Mischief Manager Team",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

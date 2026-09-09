@@ -1,0 +1,30 @@
+{
+  "run_id": "30a1ceec-0b20-41e8-8db6-92887dbeacf9",
+  "timestamp": "2026-09-06T22:20:58.451Z",
+  "mode": "dry-run",
+  "environment": {
+    "has_anthropic_key": false,
+    "node_version": "v24.14.0",
+    "platform": "linux"
+  },
+  "files_processed": [
+    {
+      "source_filename": "example-article.txt",
+      "source_path": "raw/example-article.txt",
+      "source_checksum": "b48641d8b032f8e4",
+      "prompt_used": "anthropic-default",
+      "generated_filename": "example-article.md",
+      "generated_checksum": "41e13029529bf9e6",
+      "action": "created",
+      "anthropic_response_meta": null,
+      "error_message": null
+    }
+  ],
+  "summary": {
+    "total_files_scanned": 1,
+    "files_created": 1,
+    "files_updated": 0,
+    "files_skipped": 0,
+    "errors": 0
+  }
+}
