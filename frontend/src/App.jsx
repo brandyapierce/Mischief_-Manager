@@ -26,11 +26,6 @@ import { formatWorkdayDate, getOperatingStatus, getWorkdayDate } from './utils/w
 function ZoneDetailRoute({ zones, selectedZoneId, updateZone, openTaskModal, onSelectZone, recentTasks, pendingApproval, onReviewAction, onZoneLifecycleChange, canManage, activeUser, activeSession, onStartWork, onEndWork }) {
   const { zoneId } = useParams();
   const navigate = useNavigate();
-
-  const handleSignIn = (user) => {
-    setActiveUser(user);
-    navigate('/');
-  };
   const effectiveZoneId = zoneId ?? selectedZoneId;
   const zone = zones.find((item) => item.id === effectiveZoneId) ?? zones[0] ?? sampleZone;
   const reviewTask = pendingApproval ?? (recentTasks[0]?.approvalStatus === 'pending' ? recentTasks[0] : null);
@@ -107,6 +102,11 @@ export default function App() {
   const operatingStatus = getOperatingStatus();
   const currentWorkday = formatWorkdayDate();
   const navigate = useNavigate();
+
+  const handleSignIn = (user) => {
+    setActiveUser(user);
+    navigate('/');
+  };
 
   useEffect(() => {
     saveAppState({ activeUser, zones, approvals, tasks, animals, users, zoneSessions, selectedZoneId, assignmentMap, assignmentUserId });
