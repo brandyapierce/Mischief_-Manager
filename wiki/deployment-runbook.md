@@ -1,6 +1,6 @@
 ---
 title: "Mischief Manager - Deployment Runbook"
-generated_at: "2026-09-08"
+generated_at: "2026-09-09"
 status: "active"
 ---
 
@@ -100,6 +100,8 @@ A Vercel project can exist while no successful deployment is attached to its dom
 ### The hosted page is blank or fails on a phone
 
 Check that `/assets/*.js` returns JavaScript, not `index.html`. The repository's `frontend/vercel.json` excludes `/assets` from the SPA fallback so Vercel can serve the built JavaScript and CSS files correctly.
+
+If the HTML and JavaScript asset both load correctly but the page is still white on multiple devices, inspect the browser console for a client-side runtime error. Clear site data only rules out stale browser state; it does not fix a runtime exception. The app now normalizes incomplete localStorage state on startup, so redeploy the commit containing that fix before continuing diagnosis.
 
 ### `/signin` does not load directly
 

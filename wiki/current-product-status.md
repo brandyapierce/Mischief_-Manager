@@ -1,7 +1,7 @@
 ---
 title: "Mischief Manager - Current Product Status"
 source_file: "README.md"
-generated_at: "2026-09-08"
+generated_at: "2026-09-09"
 status: "handoff"
 ---
 
@@ -53,6 +53,7 @@ The frontend prototype is a React + Vite application that models the sanctuary o
 - Staff access is limited to Dashboard, Zones, and read-only People. Management-only Overview, Tasks, Animals, and Settings routes are protected from direct URL access.
 - The Dashboard includes a QR code that opens `/signin` for phone-based staff sign-in. The sign-in route uses the persisted staff roster and returns to the Dashboard after sign-in.
 - Vercel SPA routing excludes `/assets` from the fallback rewrite so hosted JavaScript and CSS load correctly on phones.
+- App startup now normalizes incomplete saved localStorage records for active users, zone task arrays, feeding-drop arrays, and signed-in users to prevent blank-page crashes after older demo sessions.
 
 ### Core product rule that must be preserved
 
@@ -95,7 +96,7 @@ Result: successful production build with Vite.
 
 - Branch: `karpathy-llm-wiki-setup`
 - Repository: `brandyapierce/Mischief_-Manager`
-- Latest pushed commit: updated by the current handoff commit after today’s prototype work
+- Latest pushed commit: `c6e349f Harden app startup state loading`
 
 ## What is intentionally not complete yet
 
@@ -106,6 +107,10 @@ The prototype is not a full backend-integrated production app yet. The remaining
 3. QR codes should eventually encode a secure sign-in session or location identifier rather than only opening `/signin`.
 4. The current Vercel deployment is a hosted frontend demo; it still needs production authentication, backend data, and cross-device synchronization.
 5. Final production polish, accessibility improvements, automated tests, and audit history.
+
+### Latest deployment troubleshooting note
+
+The Vercel deployment was verified to return the app HTML and JavaScript bundle with the correct content types. If a browser still shows a white page after a redeploy, the remaining diagnosis should focus on a client-side runtime error rather than the Vercel asset rewrite. The startup-state hardening in `c6e349f` addresses incomplete localStorage data as one known cause.
 
 ## Recommended next work order
 

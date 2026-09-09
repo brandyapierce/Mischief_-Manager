@@ -75,7 +75,7 @@ Standard procedures for daily operations:
 
 ---
 
-**Last Generated:** 2026-09-08
-**Version:** 1.2
+**Last Generated:** 2026-09-09
+**Version:** 1.3
 
 *This wiki is maintained by an automated ingestion pipeline. For more information, see the project README.*

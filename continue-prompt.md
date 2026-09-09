@@ -43,6 +43,7 @@ Important product rules to preserve:
 - A zone can be green because cleaning is complete even if bowl-drop is still pending.
 - Managers can record signoff initials and notes when closing or reopening a zone.
 - The app is a prototype, not a production backend-integrated system yet.
+- Latest pushed code includes startup-state hardening in commit `c6e349f`, normalizing incomplete saved localStorage records so older browser sessions do not crash the initial render.
 
 Verified working state:
 - Production build succeeds via: cd /workspaces/Mischief_-Manager/frontend && npm run build
@@ -68,7 +69,7 @@ Key implementation files:
 - `wiki/deployment-runbook.md`: Vercel setup, redeploy instructions, and troubleshooting for Root Directory and Install Command errors.
 
 Known limitations and next priorities:
-1. Deploy `frontend` to a permanent Vercel project for management demonstrations.
+1. Confirm the permanent Vercel deployment is serving commit `c6e349f` and verify the app in a real browser.
 2. Replace localStorage with a real API/database and cross-device synchronization.
 3. Replace demo sign-in and QR routing with secure authentication and server-enforced authorization.
 4. Add audit history for staff edits, assignments, task corrections, approvals, and zone signoffs.
@@ -81,6 +82,7 @@ Deployment troubleshooting:
 - If Root Directory is empty, use `cd frontend && npm install`, `cd frontend && npm run build`, and Output Directory `frontend/dist` instead.
 - Never combine Root Directory `frontend` with `cd frontend` commands.
 - Read `wiki/deployment-runbook.md` before diagnosing a hosted deployment failure.
+- If HTML and `/assets/*.js` load but the page is white on multiple devices, capture the browser console runtime error; do not keep changing Vercel build settings blindly.
 
 Do not lose the existing business logic or reset the app to a simpler mock. Keep all implemented workflow state and route-driven structure.
 
