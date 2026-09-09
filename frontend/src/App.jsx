@@ -89,7 +89,7 @@ export default function App() {
   const [selectedZoneId, setSelectedZoneId] = useState(initialState.selectedZoneId);
   const [assignmentMap, setAssignmentMap] = useState(initialState.assignmentMap);
   const [assignmentUserId, setAssignmentUserId] = useState(
-    initialState.assignmentUserId || sampleUsers.find((user) => user.role === 'employee')?.id || 'u1'
+    initialState.assignmentUserId || users.find((user) => user.role === 'employee')?.id || 'u1'
   );
   const routeZoneId = location.pathname.match(/^\/zones\/([^/]+)/)?.[1];
   const activeZoneId = routeZoneId ?? selectedZoneId;
@@ -97,7 +97,7 @@ export default function App() {
   const recentZoneTasks = tasks.filter((task) => task.zone === selectedZone.name).slice(0, 3);
   const canWorkTasks = hasPermission(activeUser, 'workTasks');
   const canManageOperations = hasPermission(activeUser, 'manageOperations');
-  const assignmentUser = sampleUsers.find((user) => user.id === assignmentUserId) ?? activeUser;
+  const assignmentUser = users.find((user) => user.id === assignmentUserId) ?? activeUser;
   const activeUserInitials = activeUser.initials || activeUser.name.split(' ').map((part) => part[0]).join('').slice(0, 3).toUpperCase();
   const operatingStatus = getOperatingStatus();
   const currentWorkday = formatWorkdayDate();
@@ -471,7 +471,7 @@ export default function App() {
                   selectedZoneId={selectedZoneId}
                   onSelectZone={handleSelectZone}
                 />
-                <EmployeeLocationPanel users={sampleUsers} />
+                <EmployeeLocationPanel users={users} />
               </div>
             }
           />

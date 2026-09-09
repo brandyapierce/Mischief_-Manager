@@ -59,6 +59,12 @@ export function ZoneAssignmentPanel({ user, users = [], zones, assignmentMap = {
           );
         })}
       </div>
+
+      {!canManage && (
+        <small className="assignment-permission-hint">
+          Only managers and directors can edit assignments.
+        </small>
+      )}
     </div>
   );
 }
