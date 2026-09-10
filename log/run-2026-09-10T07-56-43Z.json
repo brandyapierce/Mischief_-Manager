@@ -1,0 +1,27 @@
+{
+  "run_id": "cb96ebd9-ab9b-4fe8-99c7-0cd577097c90",
+  "timestamp": "2026-09-10T07:56:43.806Z",
+  "mode": "dry-run",
+  "environment": {
+    "has_anthropic_key": false,
+    "node_version": "v18.20.8",
+    "platform": "linux"
+  },
+  "files_processed": [
+    {
+      "source_filename": "example-article.txt",
+      "source_path": "raw/example-article.txt",
+      "source_checksum": "b48641d8b032f8e4",
+      "action": "skipped",
+      "generated_filename": "example-article.md",
+      "generated_checksum": "41e13029529bf9e6"
+    }
+  ],
+  "summary": {
+    "total_files_scanned": 1,
+    "files_created": 0,
+    "files_updated": 0,
+    "files_skipped": 1,
+    "errors": 0
+  }
+}
